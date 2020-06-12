@@ -31,3 +31,15 @@ app.post('/user', (req, res)=>{
 app.get('/user/:id', (req, res)=>{
     res.send({"id" : arrOfUsers[req.params.id]})
 })
+
+app.delete('/user/:id', (req, res)=>{
+    var index = arrOfUsers.indexOf(arrOfUsers[req.params.id])
+    if (index < 0){
+        res.status(204).send()
+    }
+    else{
+        arrOfUsers.splice(index, 1);
+        i--;
+        res.status(202).send({"id" : arrOfUsers[index]})
+    }
+})
